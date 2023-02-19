@@ -40,7 +40,7 @@
 -----------------------------------------------------------------
 -----------------------------------------------------------------
 ## – Cluster part 3
-![agent](https://github.com/Badawi02/GCP_Project/blob/main/ScreenShots/images/9-cluster.3.png)
+![agent](https://github.com/Badawi02/GCP_Project/blob/main/ScreenShots/images/9-cluster.3..png)
 -----------------------------------------------------------------
 -----------------------------------------------------------------
 ## – vm instances
