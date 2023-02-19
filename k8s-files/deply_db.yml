@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: my-redis
+  template:
+    metadata:
+      labels:
+        name: my-redis
+    spec:
+      containers:
+      - name: redis-container
+        image: gcr.io/my-project-56889-badawi/redis_db
+        ports:
+        - containerPort: 80

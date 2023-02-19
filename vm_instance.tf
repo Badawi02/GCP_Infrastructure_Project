@@ -1,3 +1,4 @@
+
 resource "google_compute_instance" "vm_manager" {
   name         = "vm-manager"
   machine_type = "e2-medium"
@@ -23,10 +24,10 @@ resource "google_compute_instance" "vm_manager" {
     job = "manager"
   }
 
-  metadata_startup_script = file("./userData.tpl")
+  metadata_startup_script = file("./script.tpl")
 
   service_account {
-    email  = google_service_account.sa-name.email
+    email  = google_service_account.gke-manager.email
     scopes = ["cloud-platform"]
   }
 }

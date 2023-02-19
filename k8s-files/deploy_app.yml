@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: my-app
+  template:
+    metadata:
+      labels:
+        name: my-app
+    spec:
+      containers:
+      - name: app-container
+        image: gcr.io/my-project-56889-badawi/python_app
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: app-config-map
