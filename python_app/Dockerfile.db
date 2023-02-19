@@ -1,0 +1,11 @@
+#run redis image
+FROM redis:latest
+
+#make dir name app and cd to it
+WORKDIR /app
+
+#copy app files to app dir
+COPY . .
+
+#Expose
+EXPOSE 6379
