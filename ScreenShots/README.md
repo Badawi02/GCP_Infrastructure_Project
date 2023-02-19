@@ -4,7 +4,7 @@
 -----------------------------------------------------------------
 
 ## – Terraform init
-![agent](https://github.com/Badawi02/GCP_Project/blob/main/ScreenShots/images/1-terraform_initpng)
+![agent](https://github.com/Badawi02/GCP_Project/blob/main/ScreenShots/images/1-terraform_init.png)
 -----------------------------------------------------------------
 -----------------------------------------------------------------
 ## – Account services for vm
