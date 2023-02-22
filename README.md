@@ -6,10 +6,9 @@ A brief description of what this project does and who it's for
 ## Tools Used
 
 <p align="center">
-<a href="https://www.terraform.io/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/AbdEl-RahmanKhaled/AbdEl-RahmanKhaled/main/icons/terraform/terraform-original-wordmark.svg" alt="terraform" width="40" height="40"/> </a> <a href="https://cloud.google.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/AbdEl-RahmanKhaled/AbdEl-RahmanKhaled/main/icons/googlecloud/googlecloud-original.svg" alt="gcp" width="40" height="40"/> </a> <a href="https://kubernetes.io" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/AbdEl-RahmanKhaled/AbdEl-RahmanKhaled/main/icons/kubernetes/kubernetes-icon.svg" alt="kubernetes" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/AbdEl-RahmanKhaled/AbdEl-RahmanKhaled/main/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <i class="fas fa-user"></i>
+<a href="https://www.terraform.io/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/AbdEl-RahmanKhaled/AbdEl-RahmanKhaled/main/icons/terraform/terraform-original-wordmark.svg" alt="terraform" width="40" height="40"/> </a> <a href="https://cloud.google.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/AbdEl-RahmanKhaled/AbdEl-RahmanKhaled/main/icons/googlecloud/googlecloud-original.svg" alt="gcp" width="40" height="40"/> </a> <a href="https://kubernetes.io" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/AbdEl-RahmanKhaled/AbdEl-RahmanKhaled/main/icons/kubernetes/kubernetes-icon.svg" alt="kubernetes" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/AbdEl-RahmanKhaled/AbdEl-RahmanKhaled/main/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a>
 </p>
 
-![agent](https://github.com/Badawi02/GCP_Infrastructure_Project/blob/main/images/MicrosoftTeams-image.png)
 
 ### Project Details:
 
@@ -45,31 +44,26 @@ Now you can check your GCP account, you can see this resources has been created:
         Only VMs in "management-sub" subnet can access the Kubernetes cluster.
 ```
 
-
-## Deploying Jenkins as pod on kubernates :
-- first, SSH to the management "management-VM"
-- Build Dockerfile for image master and slave
-- deploy pods for master pod and slave pod
-- Run 
-```bash
-    kubectl apply -f <yourfile>.YML
-```
-
-
-## Make pipleline :
-- cofigure the pipe line to get code from github
-- and make the stages that write at jenkinsfile on slave
-- congiure slave for can connect with master 
-
-
-## Build and push the Python Docker Image to Docker Hub with jenkins :
+## Build and push the Python Docker Image to GCR (Google Cloud Registry):
 - Build the Python app Docker Image.
 ```bash
-    docker build -t <username>/python_app . Dockerfile
-    docker push <username>/python_app
+    docker build -t gcr.io/<PROJECT-ID>/python_app -f Dockerfile.app
+    docker build -t gcr.io/<PROJECT-ID>/redis_db -f Dockerfile.db
+```
+- Setup and configure Docker to Push to GCR.
+```bash
+    gcloud services enable containerregistry.googleapis.com
+```  
+```bash
+    gcloud auth configure-docker 
+``` 
+- Push the Image to GCR.
+```bash
+    docker push gcr.io/<PROJECT-ID>/python_app
+    docker push gcr.io/<PROJECT-ID>/redis_db
 ```
 
-## Deploying app to Kubernetes with jenkins :
+## Deploying to Kubernetes
 - first, SSH to the management "management-VM"
 - Install the Kubectl tool to manage the Kubernetes cluster.
 - go to K8S Folder and copy the content of each YML file to the management-VM
@@ -86,34 +80,3 @@ That will deploy:
     kubectl get all -o wide
 ```
 Now, you can access the Python App by hitting the Loadbalancer (External IP) 
-
-## ScreenShots :
-----------------------------------------------------------------
-![agent](https://github.com/Badawi02/GCP_Infrastructure_Project/blob/main/images/1.png)
------------------------------------------------------------------
------------------------------------------------------------------
-![agent](https://github.com/Badawi02/GCP_Infrastructure_Project/blob/main/images/2.png)
------------------------------------------------------------------
------------------------------------------------------------------
-![agent](https://github.com/Badawi02/GCP_Infrastructure_Project/blob/main/images/3.png)
------------------------------------------------------------------
------------------------------------------------------------------
-![agent](https://github.com/Badawi02/GCP_Infrastructure_Project/blob/main/images/4.png)
------------------------------------------------------------------
------------------------------------------------------------------
-![agent](https://github.com/Badawi02/GCP_Infrastructure_Project/blob/main/images/5.png)
------------------------------------------------------------------
------------------------------------------------------------------
-![agent](https://github.com/Badawi02/GCP_Infrastructure_Project/blob/main/images/6.png)
------------------------------------------------------------------
------------------------------------------------------------------
-![agent](https://github.com/Badawi02/GCP_Infrastructure_Project/blob/main/images/7.png)
------------------------------------------------------------------
------------------------------------------------------------------
-![agent](https://github.com/Badawi02/GCP_Infrastructure_Project/blob/main/images/8.png)
------------------------------------------------------------------
------------------------------------------------------------------
-![agent](https://github.com/Badawi02/GCP_Infrastructure_Project/blob/main/images/9.png)
-
-## Contributors:
-- [Ahmed Badawi](https://github.com/Badawi02)
